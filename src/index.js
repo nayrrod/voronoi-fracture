@@ -62,7 +62,7 @@ function init() {
     stats = new Stats()
     stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
     stats.dom.style.cssText = 'position: fixed; right: 0; bottom: 0; z-index: 500;'
-    // document.body.appendChild(stats.dom)
+    document.body.appendChild(stats.dom)
 
 
     // Generate random 2D vertices in viewport space
