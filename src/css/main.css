@@ -1,0 +1,30 @@
+
+:fullscreen a {
+    display: flex;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#threejs-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/*Dat.gui size fix for chrome */
+.dg .slider {
+    width: 60%!important;
+}
+
+.github-corner {
+  z-index: 500;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
