@@ -23,13 +23,13 @@ void main() {
     normal);
 
   // Blend a 2 colors gradient using darken mode
-  vec3 firstColor = vec3(0.76,0.98,0.47);
-  vec3 secondColor = vec3(0.41,0.90,0.62);
-  vec3 gradient = mix(firstColor, secondColor,(vPosition.y / (resolution.y / 2.0)) );
-  vec3 endColor = blendDarken(vec3(power) + vec3(0.07,0.07,0.07), gradient);
+  vec3 firstColor = vec3(0.22,0.56,0.53);
+  vec3 secondColor = vec3(0.65,0.75,0.31);
+  vec3 gradient = mix(firstColor, secondColor,(vPosition.y / (resolution.y) * sin(time)) );
+  vec3 endColor = blendDarken(vec3(power), gradient);
 
   // If theme is white, discard the gradient and only apply diffuse white with a small ambient light added
-  endColor = endColor * (1.0 - isWhite) + ((power + 0.15) * isWhite);
+  endColor = endColor * (1.0 - isWhite) + ((power + 0.15) * isWhite) + vec3(0.1);
 
   gl_FragColor = vec4(endColor, 1.0);
 }

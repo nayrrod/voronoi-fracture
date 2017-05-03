@@ -17,6 +17,16 @@ html, body {
   height: 100vh;
 }
 
+#debug-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  display: none;
+}
+
 /*Dat.gui size fix for chrome */
 .dg .slider {
     width: 60%!important;
@@ -27,4 +37,8 @@ html, body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.dg.ac {
+  z-index: 10 !important;
 }
