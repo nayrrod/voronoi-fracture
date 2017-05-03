@@ -28,9 +28,9 @@ function init() {
 
   // Initialize params for dat.gui
   guiParams = {
-    noiseScale: 0.00307,
-    noiseDisplacement: 50.0,
-    sites: 5000,
+    noiseScale: 0.0033,
+    noiseDisplacement: 57.0,
+    sites: 200,
     distribution: 'beehive',
     theme: 'neon'
   }
