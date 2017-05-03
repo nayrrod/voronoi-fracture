@@ -44,7 +44,7 @@ function init() {
   // Setup renderer
   renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    antialias: true,
+    antialias: false,
     alpha: false
   });
 

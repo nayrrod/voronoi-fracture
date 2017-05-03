@@ -1,6 +1,7 @@
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -46,6 +47,9 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new ExtractTextPlugin({filename: 'css/bundle.css', disable: false, allChunks: true}),
-        new HtmlWebpackPlugin({filename: 'index.html', template: 'index.html', inject: true})
+        new HtmlWebpackPlugin({filename: 'index.html', template: 'index.html', inject: true}),
+        new CopyWebpackPlugin([
+          { from: 'src/assets', to: 'assets' }
+        ])
     ]
 }
