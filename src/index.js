@@ -15,6 +15,12 @@ let scene, camera, renderer, clock, shaderMaterial, raycaster, mouse, bufferMesh
 let guiParams, stats
 let width, height, halfWidth, halfHeight
 
+// Display fps meter or not
+let displayFPS = false
+
+// Display controls or not
+let displayControls = false
+
 init()
 initGui(guiParams)
 animate()
@@ -30,7 +36,7 @@ function init() {
   guiParams = {
     noiseScale: 0.0033,
     noiseDisplacement: 57.0,
-    sites: 200,
+    sites: 180,
     distribution: 'beehive',
     theme: 'neon'
   }
@@ -39,7 +45,7 @@ function init() {
 
   // Setup camera
   camera = new THREE.PerspectiveCamera(75, width / height, 1, 10000)
-  camera.position.z = 500
+  camera.position.z = 450
 
   // Setup renderer
   renderer = new THREE.WebGLRenderer({
@@ -64,8 +70,10 @@ function init() {
   stats = new Stats()
   stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
   stats.dom.style.cssText = 'position: fixed; right: 0; bottom: 0; z-index: 500;'
-  document.body.appendChild(stats.dom)
+  if (displayFPS) document.body.appendChild(stats.dom)
 
+
+  // Generate 2D vertices in viewport space following a predefined distribution
   let vertices = getPointsForDistribution(guiParams.sites, guiParams.distribution, width, height)
 
   // Generate the data-only voronoi diagram from those vertices
@@ -240,6 +248,9 @@ function getBufferMesh(geomArray) {
 
 function initGui(params) {
   let gui = new Dat.GUI()
+  if(!displayControls) {
+    gui.domElement.style.display = 'none'
+  }
 
   gui.add(params, 'theme', ['neon', 'white']).name('Theme').onFinishChange(function (val) {
     if (val === 'neon') shaderMaterial.uniforms.isWhite.value = 0.0
