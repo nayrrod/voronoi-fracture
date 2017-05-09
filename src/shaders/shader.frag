@@ -1,5 +1,6 @@
 #pragma glslify: lambert = require(glsl-diffuse-lambert)
 #pragma glslify: blendDarken = require(glsl-blend/darken)
+#define M_PI 3.1415926535897932384626433832795
 
 varying vec3 vNormal;
 varying vec3 vPosition;
@@ -25,7 +26,7 @@ void main() {
   // Blend a 2 colors gradient using darken mode
   vec3 firstColor = vec3(0.22,0.56,0.53);
   vec3 secondColor = vec3(0.65,0.75,0.31);
-  vec3 gradient = mix(firstColor, secondColor,(vPosition.y / (resolution.y) * sin(time)) );
+  vec3 gradient = mix(firstColor, secondColor,(vPosition.y / (resolution.y) * sin(mod(time, M_PI))));
   vec3 endColor = blendDarken(vec3(power), gradient);
 
   // If theme is white, discard the gradient and only apply diffuse white with a small ambient light added
