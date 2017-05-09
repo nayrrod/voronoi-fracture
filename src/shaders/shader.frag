@@ -29,7 +29,7 @@ void main() {
   vec3 endColor = blendDarken(vec3(power), gradient);
 
   // If theme is white, discard the gradient and only apply diffuse white with a small ambient light added
-  endColor = endColor * (1.0 - isWhite) + ((power + 0.15) * isWhite);
+  endColor = endColor * (1.0 - isWhite) + ((power + 0.15) * isWhite) + vec3(0.13);
 
   gl_FragColor = vec4(endColor, 1.0);
 }
