@@ -40,6 +40,7 @@
         "glsl-noise": "^0.0.0",
         "glslify": "^6.0.2",
         "glslify-loader": "^1.0.2",
+        "lodash": "^4.17.4",
         "prob.js": "^1.0.6",
         "stats.js": "^0.17.0",
         "three": "^0.84.0",

@@ -4,6 +4,7 @@ import Voronoi from 'voronoi'
 import Prob from 'prob.js'
 import Dat from 'dat.gui/build/dat.gui.min'
 import Stats from 'stats.js'
+import {debounce} from 'lodash'
 
 let OrbitControls = require('three-orbit-controls')(THREE)
 
@@ -90,6 +91,7 @@ function init() {
   scene.add(bufferMesh)
 
   // window.addEventListener('mousemove', onMouseMove, false);
+  window.addEventListener('resize', debounce(init, 250))
 }
 
 function getRandom2DVertices(sitesCount, distribution, width, height) {
@@ -354,8 +356,17 @@ function getEquidistantPoints(width, height, count) {
   return vertices
 }
 
-function animate() {
+// Expose helper methods for Envision
+window.stopRendering = () => {
+  cancelAnimationFrame(window.animationFrameID)
+}
+
+window.startRendering = () => {
   requestAnimationFrame(animate)
+}
+
+function animate() {
+  window.animationFrameID = requestAnimationFrame(animate)
   stats.begin()
   shaderMaterial.uniforms.time.value = clock.getElapsedTime()
   renderer.render(scene, camera)
